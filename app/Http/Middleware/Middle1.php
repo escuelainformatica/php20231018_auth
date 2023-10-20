@@ -15,8 +15,6 @@ class Middle1
      */
     public function handle(Request $request, Closure $next, string $role='user'): Response
     {
-        //echo "se cargo middleware 1";
-        //var_dump($request->user()->nivel);
         if($request->user()->nivel===$role) {
             return $next($request);
         }
