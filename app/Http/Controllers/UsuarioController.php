@@ -23,8 +23,15 @@ class UsuarioController extends Controller
     }
     public function loginPost(Request $request) {
         $arreglo=['email'=>$request->post('email'),'password'=>$request->post('password')];
-  
-        if (Auth::attempt($arreglo)) {
+        if (Auth::guard('web')->attempt($arreglo)) {
+            $request->session()->regenerate(); // guardando la autenticacion.
+            return redirect()->intended('/');
+        }
+        return view("formulariologin");
+    }
+    public function loginAdminPost(Request $request) {
+        $arreglo=['email'=>$request->post('email'),'password'=>$request->post('password')];
+        if (Auth::guard('admin')->attempt($arreglo)) {
             $request->session()->regenerate(); // guardando la autenticacion.
             return redirect()->intended('/');
         }

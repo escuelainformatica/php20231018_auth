@@ -1,7 +1,5 @@
 # Autenticacion en Laravel
 
-## Ejercicio 2023-10-18
-
 Cree lo siguiente:
 
 * Cree un nuevo proyecto (no copie este proyecto) con el modelo "user" con los siguientes campos
@@ -29,11 +27,11 @@ Luego:
   * listarUsuario debe requerir autenticación.
   * login tiene que tener un nombre llamado "login"
 
-## Flujo de Laravel
+##  2. <a name='FlujodeLaravel'></a>Flujo de Laravel
 
 request -> Kernel(Laravel) -> enrutador (web.php) -> middleware -> funcion -> response
 
-## enrutamiento
+##  3. <a name='enrutamiento'></a>enrutamiento
 
 Para que una pagina requiera autenticacion, se requiere agregar un middleware.
 
@@ -48,7 +46,7 @@ Route::get('/',[UsuarioController::class,'index'])->middleware('auth');
 Route::get('/login',[UsuarioController::class,'loginGet'])->name('login');
 ```
 
-## como logearse (controlador)
+##  4. <a name='comologearsecontrolador'></a>como logearse (controlador)
 
 ```php
 $arreglo=['email'=>$request->post('email'),'password'=>$request->post('password')];
@@ -59,14 +57,14 @@ if (Auth::attempt($arreglo)) {
 }
 ```
 
-## como cerrar sesion (controlador)
+##  5. <a name='comocerrarsesioncontrolador'></a>como cerrar sesion (controlador)
 
 ```php
 Auth::logout();
 Session::flush();
 ```
 
-## Como crear usuario (tinker)
+##  6. <a name='Comocrearusuariotinker'></a>Como crear usuario (tinker)
 
 Abra el tinker php artisan tinker
 
@@ -85,7 +83,7 @@ $user = new App\Models\User('name'=>'admin','email'=>'a@b.cl','password'=>Hash::
 $user->save();
 ```
 
-## Como trabajar en la vista (Blade)
+##  7. <a name='ComotrabajarenlavistaBlade'></a>Como trabajar en la vista (Blade)
 
 ```html
 @auth
